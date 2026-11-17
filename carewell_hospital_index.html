@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="CareWell Hospital - compassionate healthcare and patient services.">
+<title>CareWell Hospital</title>
+<style>
+:root{--bg:#f7faf9;--surface:#fff;--ink:#12302f;--muted:#4f6a68;--brand:#0f5c5a;--brand-ink:#fff;--tint:#e3f1ee;--accent:#d9482b;--line:#d5e3e0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1f1e;--surface:#142b29;--ink:#e6f2f0;--muted:#9bb8b4;--brand:#4fb8b1;--brand-ink:#08201f;--tint:#1a3a37;--accent:#ff7b5c;--line:#264542}}
+:root[data-theme="dark"]{--bg:#0d1f1e;--surface:#142b29;--ink:#e6f2f0;--muted:#9bb8b4;--brand:#4fb8b1;--brand-ink:#08201f;--tint:#1a3a37;--accent:#ff7b5c;--line:#264542}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(70px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.2;margin:0 0 .5rem}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--surface);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.logo{font-family:Georgia,serif;font-weight:700;font-size:1.25rem;text-decoration:none;color:var(--brand)}
+nav{display:flex;gap:18px;overflow-x:auto}
+nav a{text-decoration:none;font-size:.95rem;color:var(--muted);white-space:nowrap}
+nav a:hover{color:var(--brand)}
+.btn{display:inline-block;border:0;border-radius:8px;padding:12px 20px;font:600 1rem system-ui,sans-serif;cursor:pointer;text-decoration:none;background:var(--accent);color:#fff}
+.btn.alt{background:var(--tint);color:var(--brand)}
+.btn:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.hero{padding:56px 0 48px;background:var(--tint)}
+.hero .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:36px;align-items:center}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);color:var(--brand)}
+.hero p{color:var(--muted);max-width:46ch}
+.facts{display:grid;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px}
+.facts div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.facts div:last-child{border:0;padding:0}
+.facts b{color:var(--brand)}
+.emergency{color:var(--accent);font-weight:700}
+section{padding:56px 0}
+section>.wrap>p.lead{color:var(--muted);margin:0 0 28px;max-width:60ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.card p{margin:0;color:var(--muted);font-size:.95rem}
+.ico{font-size:1.6rem;display:block;margin-bottom:8px}
+.doc{display:flex;flex-direction:column;gap:6px}
+.avatar{width:64px;height:64px;border-radius:50%;background:var(--brand);color:var(--brand-ink);display:grid;place-items:center;font:700 1.3rem Georgia,serif}
+.doc small{color:var(--muted)}
+.doc .btn{margin-top:8px;padding:9px 14px;font-size:.9rem}
+.alt-bg{background:var(--tint)}
+.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.svc div{background:var(--surface);border-radius:10px;padding:14px 16px;border-left:4px solid var(--brand)}
+.appt{display:grid;grid-template-columns:1fr 1.3fr;gap:32px;align-items:start}
+form{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:grid;gap:4px;font-size:.9rem;font-weight:600}
+input,select{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);width:100%}
+.full{grid-column:1/-1}
+.msg{grid-column:1/-1;padding:12px 14px;border-radius:8px;display:none}
+.msg.ok{display:block;background:var(--tint);color:var(--brand)}
+.msg.err{display:block;background:#fde8e3;color:#9a2a14}
+footer{background:var(--brand);color:var(--brand-ink);padding:32px 0;font-size:.95rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+@media (max-width:780px){.hero .wrap,.appt{grid-template-columns:1fr}form{grid-template-columns:1fr}.bar{height:auto;flex-wrap:wrap;padding:10px 0}nav{order:3;width:100%}.bar>.btn{margin-left:auto}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top">CareWell Hospital</a>
+    <nav aria-label="Main navigation">
+      <a href="#departments">Departments</a>
+      <a href="#doctors">Doctors</a>
+      <a href="#services">Services</a>
+      <a href="#appointment">Appointment</a>
+    </nav>
+    <a class="btn" href="#appointment">Book appointment</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p><strong>Compassionate care. Better health.</strong></p>
+        <h1>Your Health, Our Priority</h1>
+        <p>Welcome to CareWell Hospital. Explore our departments, meet our care team and request an appointment.</p>
+        <a class="btn" href="#appointment">Request an appointment</a>
+        <a class="btn alt" href="#services">Explore services</a>
+      </div>
+      <div class="facts" aria-label="Hospital information">
+        <div><span>Emergency support</span><b class="emergency">24 / 7</b></div>
+        <div><span>Patient-first care</span><b>Every day</b></div>
+        <div><span>Appointment requests</span><b>Online</b></div>
+        <div><span>Hospital</span><b>CareWell</b></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="departments">
+    <div class="wrap">
+      <h2>Our Departments</h2>
+      <p class="lead">A sample list of departments. Replace these with the hospital's confirmed services.</p>
+      <div class="grid">
+        <article class="card"><span class="ico">🫀</span><h3>Cardiology</h3><p>Heart health consultation and care.</p></article>
+        <article class="card"><span class="ico">🧒</span><h3>Paediatrics</h3><p>Healthcare support for infants and children.</p></article>
+        <article class="card"><span class="ico">🦴</span><h3>Orthopaedics</h3><p>Bone, joint and mobility care.</p></article>
+        <article class="card"><span class="ico">🩺</span><h3>General Medicine</h3><p>General health check-ups and consultation.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="doctors" class="alt-bg">
+    <div class="wrap">
+      <h2>Meet Our Doctors</h2>
+      <p class="lead">Demo doctor profiles. Add verified doctor names, qualifications and schedules before publishing.</p>
+      <div class="grid">
+        <article class="card doc"><div class="avatar" aria-hidden="true">DR</div><h3>Doctor Profile 1</h3><small>General Medicine</small><p>Consultation by appointment.</p><a class="btn alt" href="#appointment">Request visit</a></article>
+        <article class="card doc"><div class="avatar" aria-hidden="true">DR</div><h3>Doctor Profile 2</h3><small>Cardiology</small><p>Consultation by appointment.</p><a class="btn alt" href="#appointment">Request visit</a></article>
+        <article class="card doc"><div class="avatar" aria-hidden="true">DR</div><h3>Doctor Profile 3</h3><small>Paediatrics</small><p>Consultation by appointment.</p><a class="btn alt" href="#appointment">Request visit</a></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <h2>Our Services</h2>
+      <p class="lead">Examples of common hospital services. Confirm availability with the hospital before using this website publicly.</p>
+      <div class="svc">
+        <div>✓ Outpatient consultation</div>
+        <div>✓ Health check-up information</div>
+        <div>✓ Diagnostic service information</div>
+        <div>✓ Patient support and guidance</div>
+        <div>✓ Appointment request assistance</div>
+        <div>✓ Emergency information</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="appointment" class="alt-bg">
+    <div class="wrap appt">
+      <div>
+        <h2>Request an Appointment</h2>
+        <p class="lead">Fill in the form to prepare an appointment request. This demo form does not send or store patient information.</p>
+        <p><strong>Emergency?</strong> Do not use this form. Contact your local emergency service or go to the nearest emergency department.</p>
+      </div>
+      <form id="appointmentForm">
+        <label>Full name<input name="name" type="text" autocomplete="name" required placeholder="Enter your name"></label>
+        <label>Phone number<input name="phone" type="tel" autocomplete="tel" required placeholder="Enter phone number"></label>
+        <label>Department
+          <select name="department" required>
+            <option value="">Choose department</option>
+            <option>General Medicine</option><option>Cardiology</option><option>Paediatrics</option><option>Orthopaedics</option>
+          </select>
+        </label>
+        <label>Preferred date<input name="date" type="date" required></label>
+        <label class="full">Email (optional)<input name="email" type="email" autocomplete="email" placeholder="name@example.com"></label>
+        <button class="btn full" type="submit">Submit request</button>
+        <div id="formMessage" class="msg full" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><strong>CareWell Hospital</strong><br>Compassionate care for a healthier tomorrow.</div>
+    <div>Demo website template<br>Replace sample details before publishing.</div>
+    <div><a href="#top">Back to top ↑</a></div>
+  </div>
+</footer>
+
+<script>
+document.getElementById("appointmentForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  const message = document.getElementById("formMessage");
+  message.className = "msg ok full";
+  message.textContent = "Demo only: your form was not sent or saved. Connect a secure hospital booking system before accepting real appointments.";
+  this.reset();
+});
+</script>
+</body>
+</html>
